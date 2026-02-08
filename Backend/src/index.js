@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
+import productRoutes from "./routes/product.routes.js";
+
 import { authMiddleware } from "./middleware/auth.middleware.js";
 
 dotenv.config();
@@ -21,6 +23,8 @@ app.get("/api/protected", authMiddleware, (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/uploads", express.static("uploads"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
